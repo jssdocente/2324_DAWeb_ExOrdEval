@@ -1,12 +1,5 @@
 # Examen Final Ordinario - Despliegue de Aplicaciones Web
 
-Este examen consta de dos ejercicios:
-
-- 1ª Evaluación -> Ejercicio 1
-- 2ª Evaluación -> Ejercicio 2
-
-<hr>
-
 ### Datos del alumno
 
 - Nombre alumno:
@@ -14,123 +7,7 @@ Este examen consta de dos ejercicios:
 - Fecha:
 - Evaluación:
 
-## Ejercicio 1 (10 ptos)
-
-### Página Web Estática
-
-Codigo fuente: [relax.website.zip](https://drive.google.com/file/d/1OPi2iQAQ-M8kFhYW5IvJi4fKC0T7i4Oi/view?usp=sharing)
-
-Condiciones:
-
-1. Dominio: relax.local / www.relax.local
-2. Escuchar por el puerto 80
-3. Alojar la web en la carpeta /var/www/html/relax.local
-4. La página índice principal debe ser index.html
-5. Configura para que si se accede a `relax.local/images` se pueda lista el contenido de la carpeta `images`
-6. Configura para los errores 500 502 503 504 se muestre una página llamada 50x.html (si no existe crealá)
-7. Crear una página 404.hml personalizada al producirse un error 404.
-8. Esta página 404.html,y la página 50x.html no pueden ser accedidas desde el exterior, es decir, si se accede a `relax.local/404.html` o `relax.local/50x.html` se debe mostrar un error 403 (forbidden)
-9. Configura los logs de acceso y error para que se guarden en la carpeta `/var/log/nginx/relax` con el nombre `relax.local.access.log` y `relax.local.error.log` respectivamente.
-10. Utiliza la imagen de nginx:1.25.3-alpine
-
-> 🔥 Para aplicar esta configuración es requerido crear una configuración personalizada para este dominio, que se debe alojar en la carpeta adecuada según la configuración del fichero /etc/nginx/nginx.conf.
-
-Imagen de Docker: nombreusuario/relax:1.0
-
-<hr>
-<details>
-  <summary><p style="display:inline;font-size:14px">Previsualización página</p></summary>
-    <br>
-    <img src="res/02.AppWeb.working.gif">
-</details>
-
-<hr>
-
-### Pasos de la tarea
-
-- [x] 1. Crear la estructura de carpetas para probar la aplicación en local / empaquetar para el despliegue.
-- [x] 2. Crear el fichero docker-compose para probar la aplicación en local.
-- [x] 3. Levantar los contenedores y probar la aplicación en local.
-- [x] 4. Una vez todo OK, eliminar los contenedores, a través de comando.
-- [x] 5. Crear imagen docker a partir de DockerFile
-- [x] 6. Crear contenedor en base al DockerFile y probar la apliación en local.
-- [x] 7. Comprobación de funcionalidad (todo OK) a través de dominio `relax.local` y el contenedor en base a la imagen creada.
-- [x] 8. Subir contenedor en base a DockerHub
-
-<hr>
-
-#### Documentación de la tarea
-
-> 📄 0. Indica con un comentario dentro del fichero de configuración , para qué se usa cada directiva.
-> 🧲 Adjunta captura de pantalla donde se visualize la configuración del fichero de configuración personaliado para alojar el dominio realizado.<br>
-
-> 📄 1. Explica cada una de las carpetas y archivos, indicando que funcionalidad tiene, qué ficheros se van a alojar en ella, explicando para cada uno de ellos su función/utilidad.
-
-> 🧲 1. Adjunta captura de pantalla donde se visualize la estrucutra de carpetas
-
-> 🧲 2. Adjunta captura del fichero docker-compose que incluya los comentarios en línea de qué hace cada línea.
-
-> 🧲 3. Adjunta GIF levantar escenario con docker-compose.
-
-> 🧲 3. Adjunta GIF docker-desktop con el escenario creado y los contenedores creados y OKs (en verde).
-
-> 🧲 4. Adjunta GIF/Imagen donde se eliminen el escenario y todos los recursos asociados.
-
-> 🧲 5. Adjunta captura del fichero DockerFile creado. Pon un comentario en las líneas principales explicando su funcionalidad
-
-> 🧲 5. Adjunta GIF con la ejecución de la imagen a través del DockerFile.
-
-> 🧲 6. Adjunta GIF con la creación del contenedor en base a la imagen creada.
-
-> 🧲 7.1 Adjunta GIF accediendo a la página web, y se visualize correctamente a través de dominio `relax.local`. También accede a `relax.local/noexiste.html` para comprobar que se muestra la página 404.<br>
-
-> 🧲 7.2 Adjunta GIF visualize error al acceder desde fuera a `relax.local/404.html` o `relax.local/50x.html`
-
-> 🧲 8.1 Adjunta GIF con la subida de la imagen de docker a DockerHub
-
-> 🧲 8.2 Adjunta captura desde DockerHub, donde se visualize tu repositorio y la imagen subida al mismo
-
-<br>
-<hr>
-<br>
-
-En base al ejercicio 2, se requiere configurar un certificado `autofirmado` para que Google no penaliza al sitio web de esta empresa, ya que actualmente solo se puede acceder por `http`.
-
-Es decir que si un usuario accede a `http://relax.local` sea redirigido a `https://relax.local`.
-
-Para conseguir esto, es necesario que el bloque de configuración para el dominio `relax.local` incluya la configuración necesaria para que se pueda acceder por `https`, a través de un certificado autofirmado.
-
-También se requiere que las personas que accedan por `http://relax.local` sean redirigidas a `https://relax.local`, por lo que será necesario crear una configuración para HTTP y otra para HTTPS.
-
-➕ _Resumiendo:_
-
-- Habría que crear 2 configuraciones, una para HTTPS y otra para HTTP.
-  - La configuración original habrá que cambiar para que escuche por el puerto 443, en lugar del 80.
-  - Crear otra nueva, para que escuche por el puerto 80 y deberá redirigir a `https://relax.local`.
-
-> **Auto-aprendizaje**<br>
-> De este punto no se ha realizado ninguna práctica, pero la documentación está disponible en los [apuntes](https://github.com/jssfpciclos/DAW_daweb/blob/main/UT4/README.md#certificados-autofirmados) y también existe mucha documentación en la web.
-
-> 🔥 Recuerda, que debes redirigir el puerto 443, tanto a nivel del contenedor, como a nivel de DNS con Awesome Manager.
->
-> - localhost:443 https://www.relax.local https://relax.local
-> - localhost www.relax.local relax.local
-
-### Pasos de la tarea
-
-- [x] 0. Breve explicación de cómo conseguir esto.
-- [x] 1. Crea una configuración para este nuevo dominio.
-- [x] 2. Prueba la nueva configuración mostrando su funcionamiento.
-
-#### Documentación de la tarea
-
-> 📄 0. Explica brevemente qué pasos debes dar para conseguir esto
-
-> 🧲 1. Adjunta captura de pantalla donde se visualize la configuración de los 2 ficheros de configuración para el dominio `relax.local`, uno para HTTP y otro para HTTPS.
-
-> 🧲 2. Adjunta GIF accediendo a la página web `http://relax.local` sean redirigidas a `https://relax.local`.
-
-## Ejercicio 2 (10 Ptos)
+## Ejercicio 1 (10 Ptos)
 
 Este ejercicio consiste en preparar para despliegue una Aplicación Web realizada en PHP. La aplicación es un Classroom, realizado con PHP, que se conecta a una base de datos MySQL.
 
@@ -298,6 +175,10 @@ volumes:
 - [x] 1.2.6 Accede a la Aplicación con un usuario Student
 - [x] 1.2.7 Páginas de error 403 y 404
 - [x] 1.2.8 Modificación configuración Nginx solucionar problema 403 Forbidden
+- [x] 1.2.9 Eliminar escenario docker-compose
+- [x] 1.2.10 Crear imagen Docker de la aplicación a partir del fichero `Dockerfile`
+- [x] 1.2.11 Probar funcionamiento a partir de la imagen creada
+- [x] 1.2.12 Subir a dockerhub la imagen creada
 
 ### Partes a entregar
 
@@ -378,6 +259,39 @@ Si accedes a `localhost` o `myclassroom.local` verás que obtienes una página `
 > 📄 Explica qué has cambiado en la configuración y explica el motivo.
 
 > 🧲 Incluye un GIF donde se visualize que se puede acceder por `myclassroom.local` y se accede a la web.
+
+#### 1.2.9 Eliminar escenario docker-compose
+
+Elimina los contenedores del escenario creado a través de una orden, también que se elimine el volumen.
+
+> 📄 Indica la orden que has utilizado
+
+#### 1.2.10 Crear imagen Docker de la aplicación
+
+Crea un fichero `dockerfile` que permita crear una imagen Docker de la aplicación. Crear dentro de la carpeta `src`<br>
+**Nombre la imagen `{usuario-dockerhub}/myclassroom:1.0`.**
+
+> 📄 Adjunta el texto del dockerfile en un bloque de código
+
+```dockerfile
+# contenido del dockerfile
+```
+
+> 🧲 Incluye un GIF donde se visualize la creación de la imagen a partir del dockerfile.
+
+#### 1.2.11 Probar funcionamiento a partir de la imagen creada
+
+Ahora levanta un contenedor a partir de la imagen creada, y comprueba que la aplicación funciona correctamente, igual que antes.
+
+> 🧲 Incluye un GIF donde se visualize que la aplicación funciona a través de la imagen creada.
+
+#### 1.2.12 Subir a dockerhub la imagen creada
+
+Sube la image creada a dockerhub, a través de comando.
+
+> 📄 Indica el comando que has utilizado
+
+> 🧲 Incluye una imagen con la imagen docker subida a tu repositorio de dockerhub
 
 <br>
 <hr>
