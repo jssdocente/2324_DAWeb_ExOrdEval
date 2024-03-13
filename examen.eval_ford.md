@@ -174,11 +174,9 @@ volumes:
 - [x] 1.2.5 Accede a la Aplicación con un usuario Faculty
 - [x] 1.2.6 Accede a la Aplicación con un usuario Student
 - [x] 1.2.7 Páginas de error 403 y 404
-- [x] 1.2.8 Modificación configuración Nginx solucionar problema 403 Forbidden
-- [x] 1.2.9 Eliminar escenario docker-compose
-- [x] 1.2.10 Crear imagen Docker de la aplicación a partir del fichero `Dockerfile`
-- [x] 1.2.11 Probar funcionamiento a partir de la imagen creada
-- [x] 1.2.12 Subir a dockerhub la imagen creada
+- [x] 1.2.8 Modificación configuración Nginx solucionar problema 403 Forbidden al acceder sin poner página `index.php`
+- [x] 1.2.9 Crear imagen Docker de la aplicación a partir del fichero `Dockerfile`
+- [x] 1.2.10 Subir a dockerhub la imagen creada
 
 ### Partes a entregar
 
@@ -223,7 +221,7 @@ Los usuarios Administradores, están en la tabla `admin` de la base de datos. Ac
 
 #### 1.2.5 Accede a la Aplicación con un usuario Faculty
 
-Los usuarios Administradores, están en la tabla `facutlytable` de la base de datos. Accede a la aplicación con un usuario Admin.
+Los usuarios Facultades, están en la tabla `facutlytable` de la base de datos. Accede a la aplicación con un usuario Admin.
 
 > 📄 Indica las credenciales de un usuario Facultad
 
@@ -231,7 +229,7 @@ Los usuarios Administradores, están en la tabla `facutlytable` de la base de da
 
 #### 1.2.6 Accede a la Aplicación con un usuario Student
 
-Los usuarios Administradores, están en la tabla `studenttable` de la base de datos. Accede a la aplicación con un usuario Admin.
+Los usuarios Estudiantes, están en la tabla `studenttable` de la base de datos. Accede a la aplicación con un usuario Admin.
 
 > 📄 Indica las credenciales de un usuario Student
 
@@ -260,13 +258,8 @@ Si accedes a `localhost` o `myclassroom.local` verás que obtienes una página `
 
 > 🧲 Incluye un GIF donde se visualize que se puede acceder por `myclassroom.local` y se accede a la web.
 
-#### 1.2.9 Eliminar escenario docker-compose
 
-Elimina los contenedores del escenario creado a través de una orden, también que se elimine el volumen.
-
-> 📄 Indica la orden que has utilizado
-
-#### 1.2.10 Crear imagen Docker de la aplicación
+#### 1.2.9 Crear imagen Docker de la aplicación a partir de un dockerfile
 
 Crea un fichero `dockerfile` que permita crear una imagen Docker de la aplicación. Crear dentro de la carpeta `src`<br>
 **Nombre la imagen `{usuario-dockerhub}/myclassroom:1.0`.**
@@ -279,13 +272,8 @@ Crea un fichero `dockerfile` que permita crear una imagen Docker de la aplicaci�
 
 > 🧲 Incluye un GIF donde se visualize la creación de la imagen a partir del dockerfile.
 
-#### 1.2.11 Probar funcionamiento a partir de la imagen creada
 
-Ahora levanta un contenedor a partir de la imagen creada, y comprueba que la aplicación funciona correctamente, igual que antes.
-
-> 🧲 Incluye un GIF donde se visualize que la aplicación funciona a través de la imagen creada.
-
-#### 1.2.12 Subir a dockerhub la imagen creada
+#### 1.2.10 Subir a dockerhub la imagen creada
 
 Sube la image creada a dockerhub, a través de comando.
 
